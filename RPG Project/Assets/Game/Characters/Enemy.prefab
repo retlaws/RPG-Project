@@ -14,6 +14,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &1630120200924567931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781256027621969998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5f8bb83d9a20846939db65701c90b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 5
+  suspicionTime: 4
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  dwellAtWayPointTime: 1
+  patrolSpeedFraction: 0.383
 --- !u!114 &1897451555552821425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,6 +51,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1999637492, guid: e440c5301eb9ca94ebee6f3fc971119c, type: 3}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999637493, guid: e440c5301eb9ca94ebee6f3fc971119c, type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999637493, guid: e440c5301eb9ca94ebee6f3fc971119c, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2847475184423239270, guid: e440c5301eb9ca94ebee6f3fc971119c,
         type: 3}
       propertyPath: m_Name
