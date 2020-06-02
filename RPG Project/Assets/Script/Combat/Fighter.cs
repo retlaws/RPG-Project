@@ -90,6 +90,7 @@ namespace RPG.Combat
         {
             target = null;
             animator.SetTrigger("stopAttack");
+            mover.Cancel();
         }
     }
 }
