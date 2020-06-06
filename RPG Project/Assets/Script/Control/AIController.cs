@@ -128,9 +128,21 @@ namespace RPG.Control
 
         private bool InAttackRangeOfPlayer()
         {
+            if(IsRangedWeapon())
+            {
+                chaseDistance = fighter.GetCurrentWeapon().GetWeaponRange();
+            }
+
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
             return distanceToPlayer <= chaseDistance;
         }
+
+        private bool IsRangedWeapon()
+        {
+            return fighter.CheckIfRangedWeapon();
+        }
+
+
 
         //Called by Unity
         private void OnDrawGizmosSelected()

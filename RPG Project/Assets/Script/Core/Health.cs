@@ -20,6 +20,14 @@ namespace RPG.Core
             actionScheduler = GetComponent<ActionScheduler>();
         }
 
+        private void Update()
+        {
+            if (IsDead())
+            {
+                gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            }
+        }
+
         public bool IsDead()
         {
             return isDead;
