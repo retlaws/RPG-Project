@@ -1,12 +1,9 @@
 ﻿using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using RPG.Resources;
 using UnityEngine;
-using UnityEngine.AI;
+
 
 
 namespace RPG.Control
@@ -42,7 +39,6 @@ namespace RPG.Control
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
             actionScheduler = GetComponent<ActionScheduler>();
-
         }
 
         private void Start()
@@ -130,7 +126,7 @@ namespace RPG.Control
         {
             if(IsRangedWeapon())
             {
-                chaseDistance = fighter.GetCurrentWeapon().GetWeaponRange();
+                chaseDistance = fighter.GetCurrentWeapon().GetRange();
             }
 
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);

@@ -1,7 +1,4 @@
-﻿using RPG.Core;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using RPG.Resources;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -16,6 +13,7 @@ namespace RPG.Combat
         [SerializeField] float lifeAfterImpact = 1f;
 
         Health target = null;
+        GameObject instigator = null;
         float damage = 0;
 
 
@@ -29,10 +27,11 @@ namespace RPG.Combat
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
-        public void SetTarget(Health target, float damage)
+        public void SetTarget(Health target, GameObject instigator, float damage)
         {
             this.target = target;
             this.damage = damage;
+            this.instigator = instigator;
             transform.LookAt(GetAimLocation());
             Destroy(gameObject, maxLifeTime);
         }
@@ -56,20 +55,35 @@ namespace RPG.Combat
 
             speed = 0;
 
-            target.TakeDamage(damage);
+            target.TakeDamage(instigator, damage);
             if (!otherHealth.IsDead())
             {
-                if(hitEffect != null)
-                {
-                    Instantiate(hitEffect, GetAimLocation(), transform.rotation);
-                }
+                HitEffect();
 
-                foreach (GameObject toDestroy in destroyOnHit)
-                {
-                    Destroy(toDestroy);
-                }
+                DestroyOnImpact();
 
                 Destroy(gameObject, lifeAfterImpact);
+            }
+            if (otherHealth.IsDead())
+            {
+                DestroyOnImpact();
+                HitEffect();
+            }
+        }
+
+        private void HitEffect()
+        {
+            if (hitEffect != null)
+            {
+                Instantiate(hitEffect, GetAimLocation(), transform.rotation);
+            }
+        }
+
+        private void DestroyOnImpact()
+        {
+            foreach (GameObject toDestroy in destroyOnHit)
+            {
+                Destroy(toDestroy);
             }
         }
     }

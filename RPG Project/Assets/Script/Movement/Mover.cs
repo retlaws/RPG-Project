@@ -1,7 +1,6 @@
 ﻿using RPG.Core;
+using RPG.Resources;
 using RPG.Saving;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -70,7 +69,6 @@ namespace RPG.Movement
         {
             Dictionary<string, object> data = (Dictionary<string, object>)state;
             GetComponent<NavMeshAgent>().enabled = false;
-
             transform.position = ((SerializableVector3)data["position"]).ToVector();
             transform.eulerAngles = ((SerializableVector3)data["rotation"]).ToVector();
             GetComponent<NavMeshAgent>().enabled = true;

@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
 using System.Net;
-using RPG.Core;
+using RPG.Resources;
+
 
 namespace RPG.Control
 {
@@ -14,7 +12,7 @@ namespace RPG.Control
         Mover mover;
         Fighter fighter;
         Health health;
-
+        
         void Awake()
         {
             mover = GetComponent<Mover>();

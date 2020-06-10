@@ -7,8 +7,10 @@ namespace RPG.Combat
 {
     public class DestroyImpactEffect : MonoBehaviour
     {
+        [SerializeField] GameObject targetToDestroy = null;
         ParticleSystem particle;
-        void Start()
+
+        void Awake()
         {
             particle = GetComponent<ParticleSystem>();
         }
@@ -18,7 +20,14 @@ namespace RPG.Combat
         {
             if (particle.isStopped)
             {
-                Destroy(gameObject);
+                if(targetToDestroy != null)
+                {
+                    Destroy(targetToDestroy);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using RPG.Core;
 using System;
 using UnityEngine;
+using RPG.Resources;
 
 namespace RPG.Combat
 {
@@ -11,6 +12,7 @@ namespace RPG.Combat
         [SerializeField] GameObject equippedPrefab = null;
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float weaponDamage = 5f;
+        [SerializeField] float percentageBonus = 0;
         [SerializeField] bool isRightHanded = true;
         [SerializeField] Projectile projectile = null;
 
@@ -67,12 +69,12 @@ namespace RPG.Combat
             return projectile != null;
         }
 
-        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator, float calculatedDamage)
         {
             Transform handTransform = GetTransform(rightHand, leftHand);
 
             Projectile projectileInstance = Instantiate(projectile, handTransform.position, Quaternion.identity);
-            projectileInstance.SetTarget(target, weaponDamage);
+            projectileInstance.SetTarget(target, instigator, calculatedDamage);
         }
 
         public float GetDamage()
@@ -85,9 +87,9 @@ namespace RPG.Combat
             return weaponRange;
         }
 
-        public float GetWeaponRange()
+        public float GetPercentageBonus()
         {
-            return weaponRange;
+            return percentageBonus;
         }
 
     }

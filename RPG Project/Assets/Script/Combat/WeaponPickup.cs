@@ -13,7 +13,7 @@ namespace RPG.Combat
 
         SphereCollider sphereCollider;
 
-        private void Start()
+        private void Awake()
         {
             sphereCollider = GetComponent<SphereCollider>();
         }
