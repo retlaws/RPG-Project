@@ -1,4 +1,5 @@
-﻿using RPG.Resources;
+﻿using GameDevTV.Utils;
+using RPG.Attributes;
 using System;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -17,14 +18,22 @@ namespace RPG.Stats
 
         public event Action onLevelUp;
 
-        int currentLevel = 1;
+        LazyValue<int> currentLevel;
         GameObject player;
 
         private void Awake()
         {
             player = GameObject.FindWithTag("Player");
             experience = GetComponent<Experience>();
+            currentLevel = new LazyValue<int>(CalculateLevel);
+
         }
+
+        private void Start()
+        {
+            currentLevel.ForceInit();  
+        }
+
 
         private void OnEnable()
         {
@@ -42,17 +51,13 @@ namespace RPG.Stats
             }
         }
 
-        private void Start()
-        {
-            currentLevel = CalculateLevel();
-        }
-
+      
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel(); 
-            if (newLevel > currentLevel)
+            if (newLevel > currentLevel.value)
             {
-                currentLevel = newLevel;
+                currentLevel.value = newLevel;
                 Instantiate(levelUpEffect, transform);
                 onLevelUp();
             }
@@ -65,7 +70,7 @@ namespace RPG.Stats
 
         public int GetLevel()
         {
-            return currentLevel;
+            return currentLevel.value;
         }
 
         private float GetBaseStat(Stat stat)
