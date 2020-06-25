@@ -82,6 +82,20 @@ namespace RPG.Attributes
             return GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
+        public void Heal(float healAmount)
+        {
+            float potentialHealthPoints = healthPoints.value + healAmount;
+
+            if(potentialHealthPoints < GetMaxHealthPoints())
+            {
+                healthPoints.value = potentialHealthPoints;
+            }
+            else
+            {
+                healthPoints.value = GetMaxHealthPoints();
+            }
+        }
+
 
         private void Die()
         {
@@ -118,8 +132,6 @@ namespace RPG.Attributes
                 Die();
             }
         }
-
-        
     }
 }
 

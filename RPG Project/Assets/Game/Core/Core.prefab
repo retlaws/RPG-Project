@@ -92,6 +92,45 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1846437187195921976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8678322951645865101}
+  - component: {fileID: 7377390347290206206}
+  m_Layer: 0
+  m_Name: MIc Boom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8678322951645865101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846437187195921976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0, z: 9.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3404799946487002348}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &7377390347290206206
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846437187195921976}
+  m_Enabled: 1
 --- !u!1 &3404799946487002347
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +141,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3404799946487002348}
   - component: {fileID: 3404799946487002351}
-  - component: {fileID: 3404799946487002350}
   - component: {fileID: 3404799946487002349}
   m_Layer: 0
   m_Name: Camera
@@ -121,7 +159,8 @@ Transform:
   m_LocalRotation: {x: 0.22358334, y: 0.6708283, z: -0.22358334, w: 0.67082816}
   m_LocalPosition: {x: -19.424595, y: 0.77621365, z: -27.569998}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8678322951645865101}
   m_Father: {fileID: 3404799946643009798}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -168,14 +207,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3404799946487002350
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3404799946487002347}
-  m_Enabled: 1
 --- !u!114 &3404799946487002349
 MonoBehaviour:
   m_ObjectHideFlags: 0

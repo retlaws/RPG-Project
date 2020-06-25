@@ -26,7 +26,8 @@ namespace RPG.Control
         [SerializeField] CursorMapping[] cursorMappings;
         [SerializeField] CursorMapping defaultMapping;
         [SerializeField] float maxNavSampleDistance = 1f;
-        [SerializeField] float maxNavPathLength = 40f;
+        [SerializeField] float raycastRadius = 1f;
+
 
 
 
@@ -76,7 +77,7 @@ namespace RPG.Control
 
         private RaycastHit[] RaycastAllSorted()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), raycastRadius);
             float[] distances = new float[hits.Length];
 
             for (int i = 0; i < hits.Length; i++)
@@ -94,6 +95,8 @@ namespace RPG.Control
 
             if (hasHit == false) return false;
 
+            if (!GetComponent<Mover>().canMoveTo(target)) return false;
+
             if (Input.GetMouseButton(0))
             {
                 mover.StartMoveAction(target, 1f);
@@ -110,29 +113,8 @@ namespace RPG.Control
             NavMeshHit navHit;
             bool hasCastToNavMesh = NavMesh.SamplePosition(hit.point, out navHit, maxNavSampleDistance, NavMesh.AllAreas);
             if(!hasCastToNavMesh) return false;
-            
             target = navHit.position;
-
-            NavMeshPath path = new NavMeshPath();
-            bool hasPath = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, path);
-            if (!hasPath) return false;
-            if(path.status != NavMeshPathStatus.PathComplete) return false;
-            if (GetPathLength(path) > maxNavPathLength) return false;
-
             return true;
-        }
-
-        private float GetPathLength(NavMeshPath path)
-        {
-            float total = 0;
-            if (path.corners.Length < 2) return total;
-            Vector3[] waypoints = path.corners;
-            for (int i = 0; i < waypoints.Length - 1; i++)
-            {
-                float distance = Vector3.Distance(waypoints[i], waypoints[i + 1]);
-                total += distance;
-            }
-            return total; 
         }
 
         private bool InteractWithUI()
